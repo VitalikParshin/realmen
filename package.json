@@ -2,7 +2,7 @@
   "name": "realmen",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://vitalikparshin.github.io/realmen.github.io/",
+  "homepage": "https://vitalikparshin.github.io/realmen/",
   "dependencies": {
     "gh-pages": "^2.0.1",
     "react": "^16.5.2",
