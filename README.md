@@ -1,3 +1,4 @@
 - [npm start](#npm-start)
-- [npm run build](#npm-run-build)
+- [npm run build]
+- [npm run deploy]
 - [GitHub Pages](#github-pages)
