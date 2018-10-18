@@ -18,7 +18,14 @@
 import { any, func, object } from 'prop-types';
 import GameBoard from './GameBoard';
 import React from 'react';
-import { Animated, AppRegistry, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import {
+  Animated,
+  AppRegistry,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View
+} from 'react-native';
 
 const BOARD_PADDING = 3;
 const CELL_MARGIN = 4;
@@ -69,14 +76,16 @@ class Board extends React.Component {
 }
 
 class Tile extends React.Component {
-  state
+  state;
 
   static propTypes = {
     tile: object
   };
 
   static _getPosition(index) {
-    return BOARD_PADDING + (index * (CELL_SIZE + CELL_MARGIN * 2) + CELL_MARGIN);
+    return (
+      BOARD_PADDING + (index * (CELL_SIZE + CELL_MARGIN * 2) + CELL_MARGIN)
+    );
   }
 
   constructor(props) {
@@ -123,7 +132,11 @@ class Tile extends React.Component {
   render() {
     const tile = this.props.tile;
 
-    const tileStyles = [styles.tile, styles['tile' + tile.value], this.calculateOffset()];
+    const tileStyles = [
+      styles.tile,
+      styles['tile' + tile.value],
+      this.calculateOffset()
+    ];
 
     const textStyles = [
       styles.value,
@@ -153,12 +166,17 @@ class GameEndOverlay extends React.Component {
       return <View />;
     }
 
-    const message = board.hasWon() ? 'Good Job!' : 'Game Over';
+    const message = board.hasWon()
+      ? 'Good Job! Now you are the real man indeed'
+      : 'Game Over';
 
     return (
       <View style={styles.overlay}>
         <Text style={styles.overlayMessage}>{message}</Text>
-        <TouchableOpacity onPress={this.props.onRestart} style={styles.tryAgain}>
+        <TouchableOpacity
+          onPress={this.props.onRestart}
+          style={styles.tryAgain}
+        >
           <Text style={styles.tryAgainText}>Try Again?</Text>
         </TouchableOpacity>
       </View>
@@ -184,7 +202,7 @@ class Game2048 extends React.Component {
     this.setState({ board: new GameBoard() });
   };
 
-  _handleStart = (event) => {
+  _handleStart = event => {
     if (this.state.board.hasWon()) {
       return;
     }
@@ -193,7 +211,7 @@ class Game2048 extends React.Component {
     this.startY = event.nativeEvent.pageY;
   };
 
-  _handleEnd = (event) => {
+  _handleEnd = event => {
     if (this.state.board.hasWon()) {
       return;
     }
@@ -204,7 +222,10 @@ class Game2048 extends React.Component {
     let direction = -1;
     if (Math.abs(deltaX) > 3 * Math.abs(deltaY) && Math.abs(deltaX) > 30) {
       direction = deltaX > 0 ? 2 : 0;
-    } else if (Math.abs(deltaY) > 3 * Math.abs(deltaX) && Math.abs(deltaY) > 30) {
+    } else if (
+      Math.abs(deltaY) > 3 * Math.abs(deltaX) &&
+      Math.abs(deltaY) > 30
+    ) {
       direction = deltaY > 0 ? 3 : 1;
     }
 
@@ -227,7 +248,10 @@ class Game2048 extends React.Component {
         style={styles.container}
       >
         <Board>{tiles}</Board>
-        <GameEndOverlay board={this.state.board} onRestart={this._handleRestart} />
+        <GameEndOverlay
+          board={this.state.board}
+          onRestart={this._handleRestart}
+        />
       </View>
     );
   }
@@ -258,7 +282,9 @@ const styles = StyleSheet.create({
   },
   overlayMessage: {
     fontSize: 40,
-    marginBottom: 20
+    marginBottom: 20,
+    marginLeft: 10,
+    marginRight: 10
   },
   tryAgain: {
     backgroundColor: '#887761',
